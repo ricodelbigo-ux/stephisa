@@ -3,7 +3,7 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
 
 # Official Next.js Plugin for Netlify (Ensures zero 404s on page refresh, API routes & dynamic SSR)
 [[plugins]]
