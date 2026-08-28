@@ -1,69 +1,112 @@
-import Image from "next/image";
+import React from 'react';
+import HeroCarousel from '@/components/HeroCarousel';
+import StatsBar from '@/components/StatsBar';
+import PolesGrid from '@/components/PolesGrid';
+import Testimonials from '@/components/Testimonials';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Shield, Award, ArrowRight } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen">
+      {/* Golden Gate Style Hero Carousel */}
+      <HeroCarousel />
+
+      {/* Stats Bar */}
+      <StatsBar />
+
+      {/* Presentation Section - Clean & Open */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Content */}
+            <div className="lg:col-span-6 space-y-6">
+              <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+                Une Synergie d&apos;Expertise au Service du Togo
+              </h2>
+
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Nés de la terre avec notre expertise fondamentale en <strong>agropastoralisme</strong>, nous avons développé des pôles d&apos;excellence en <strong>immobilier & BTP</strong>, en <strong>transport routier</strong>, en <strong>investissement</strong> et dans le <strong>domaine juridique</strong>.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
+                  <Shield className="w-5 h-5 text-[#2D7D46] shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-xs">Titres Fonciers Vrais</h4>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Terrains vérifiés et garantis sans aucun litige.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
+                  <Award className="w-5 h-5 text-[#F89B1C] shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-xs">Entreprise Agréée CFE</h4>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Structures conformes aux lois togolaises.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <Link
+                  href="/societe"
+                  className="inline-flex items-center gap-2 bg-slate-900 hover:bg-[#2D7D46] text-white text-xs font-bold px-6 py-3.5 rounded-xl transition duration-300 shadow-sm"
+                >
+                  <span>Découvrir Notre Histoire & Vision</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Image */}
+            <div className="lg:col-span-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                <Image
+                  src="/assets/img/Angagemen de stephisa 1.png"
+                  alt="Engagement STEPHISA SARL"
+                  width={600}
+                  height={450}
+                  className="w-full h-[380px] object-cover"
+                />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 5 Poles Grid */}
+      <PolesGrid />
+
+      {/* Ce Que Nos Partenaires Disent */}
+      <Testimonials />
+
+      {/* CTA Bottom Banner */}
+      <section className="py-16 bg-slate-950 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <h2 className="font-serif text-3xl sm:text-4xl font-extrabold">
+            Prêt à Réaliser Votre Projet avec STEPHISA SARL ?
+          </h2>
+          <p className="text-slate-400 text-sm max-w-xl mx-auto">
+            Que vous ayez un besoin agricole, immobilier, logistique, d&apos;investissement ou juridique, nos experts sont à votre entière disposition.
           </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <Link
+              href="/contact"
+              className="bg-[#2D7D46] hover:bg-[#1E562F] text-white font-bold text-xs px-8 py-3.5 rounded-xl shadow-lg transition"
+            >
+              Contactez nos Chargés d&apos;Affaires
+            </Link>
+            <a
+              href="tel:+22891803546"
+              className="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs px-8 py-3.5 rounded-xl border border-white/20 transition"
+            >
+              Appeler le +228 91 80 35 46
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
