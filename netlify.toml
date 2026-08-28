@@ -3,6 +3,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  TURSO_DATABASE_URL = "libsql://stephisa-sewoda.aws-ap-northeast-1.turso.io"
+  TURSO_AUTH_TOKEN = "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3ODc5NTY0NjEsImlkIjoiMDFhMDNmZWQtZGUwMS03OTQ0LTg2YTQtYmQ5YTFmOTA5M2I1Iiwia2lkIjoiZTUzd04zejdRVDlMSEd3SnFYT3kyNElHN0Q0bmotOWk1dzNjZHB5QmtnOCIsInJpZCI6ImIxZTQ0MWM1LWRhNzMtNDdiYy04OGYxLWY2ZDBjMTg3YjI3MyJ9.U3cBZ__7aST6Jxue2CnYjTLfMiJm8xqtGC1B-7QAMdjm3FrFhiG8LQrNXSNejEvamrcF2gybxTp8MkijKuugBA"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

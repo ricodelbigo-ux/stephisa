@@ -1,14 +1,19 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import client, { initDB } from '@/lib/db';
 
 export async function POST(request: Request) {
   try {
+    await initDB();
     const { username, password } = await request.json();
 
-    const user = db.prepare('SELECT * FROM users WHERE username = ? AND password = ?').get(username, password);
+    const result = await client.execute({
+      sql: 'SELECT * FROM users WHERE username = ? AND password = ?',
+      args: [username, password]
+    });
 
-    if (user) {
-      const response = NextResponse.json({ status: 'success', username });
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      const response = NextResponse.json({ status: 'success', username: user.username });
       response.cookies.set('admin_session', 'authenticated', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',

@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import client, { initDB } from '@/lib/db';
 
 export async function GET() {
   try {
-    const realisations = db.prepare(`
+    await initDB();
+    const result = await client.execute(`
       SELECT id, title, category, image, description, created_at
       FROM realisations 
       ORDER BY created_at DESC
-    `).all();
+    `);
 
-    return NextResponse.json({ status: 'success', data: realisations });
+    return NextResponse.json({ status: 'success', data: result.rows });
   } catch (error: any) {
     return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
   }
@@ -17,6 +18,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    await initDB();
     const body = await request.json();
     const { title, category, image, description } = body;
 
@@ -24,14 +26,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ status: 'error', message: 'Titre et image requis' }, { status: 400 });
     }
 
-    const stmt = db.prepare(`
-      INSERT INTO realisations (title, category, image, description)
-      VALUES (?, ?, ?, ?)
-    `);
+    const result = await client.execute({
+      sql: `INSERT INTO realisations (title, category, image, description)
+            VALUES (?, ?, ?, ?)`,
+      args: [title, category || 'Autre', image, description || title]
+    });
 
-    const result = stmt.run(title, category || 'Autre', image, description || title);
-
-    return NextResponse.json({ status: 'success', id: result.lastInsertRowid });
+    return NextResponse.json({ status: 'success', id: Number(result.lastInsertRowid) });
   } catch (error: any) {
     return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
   }

@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import client, { initDB } from '@/lib/db';
 
 export async function GET() {
   try {
-    const blogs = db.prepare(`
+    await initDB();
+    const result = await client.execute(`
       SELECT id, title, slug, excerpt, content, image, category, author, status, views, created_at
       FROM blogs 
       ORDER BY created_at DESC
-    `).all();
+    `);
 
-    return NextResponse.json({ status: 'success', data: blogs });
+    return NextResponse.json({ status: 'success', data: result.rows });
   } catch (error: any) {
     return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
   }
@@ -17,6 +18,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    await initDB();
     const body = await request.json();
     const { title, excerpt, content, image, category, author, status } = body;
 
@@ -31,23 +33,22 @@ export async function POST(request: Request) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)+/g, '') + '-' + Date.now().toString().slice(-4);
 
-    const stmt = db.prepare(`
-      INSERT INTO blogs (title, slug, excerpt, content, image, category, author, status)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `);
+    const result = await client.execute({
+      sql: `INSERT INTO blogs (title, slug, excerpt, content, image, category, author, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      args: [
+        title,
+        slug,
+        excerpt || title,
+        content,
+        image || '/assets/img/heros.png',
+        category || 'Agriculture',
+        author || 'Direction STEPHISA',
+        status || 'published'
+      ]
+    });
 
-    const result = stmt.run(
-      title,
-      slug,
-      excerpt || title,
-      content,
-      image || '/assets/img/heros.png',
-      category || 'Agriculture',
-      author || 'Direction STEPHISA',
-      status || 'published'
-    );
-
-    return NextResponse.json({ status: 'success', id: result.lastInsertRowid });
+    return NextResponse.json({ status: 'success', id: Number(result.lastInsertRowid) });
   } catch (error: any) {
     return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
   }

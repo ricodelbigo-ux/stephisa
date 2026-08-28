@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import client, { initDB } from '@/lib/db';
 
 export async function GET() {
   try {
-    const contacts = db.prepare(`
+    await initDB();
+    const result = await client.execute(`
       SELECT id, name, email, phone, service, subject, message, status, created_at
       FROM contacts 
       ORDER BY created_at DESC
-    `).all();
+    `);
 
-    return NextResponse.json({ status: 'success', data: contacts });
+    return NextResponse.json({ status: 'success', data: result.rows });
   } catch (error: any) {
     return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
   }
@@ -17,6 +18,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    await initDB();
     const body = await request.json();
     const { name, email, phone, service, subject, message } = body;
 
@@ -24,14 +26,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ status: 'error', message: 'Nom, email et message requis' }, { status: 400 });
     }
 
-    const stmt = db.prepare(`
-      INSERT INTO contacts (name, email, phone, service, subject, message)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `);
+    const result = await client.execute({
+      sql: `INSERT INTO contacts (name, email, phone, service, subject, message)
+            VALUES (?, ?, ?, ?, ?, ?)`,
+      args: [name, email, phone || '', service || 'Général', subject || '', message]
+    });
 
-    const result = stmt.run(name, email, phone || '', service || 'Général', subject || '', message);
-
-    return NextResponse.json({ status: 'success', id: result.lastInsertRowid });
+    return NextResponse.json({ status: 'success', id: Number(result.lastInsertRowid) });
   } catch (error: any) {
     return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
   }

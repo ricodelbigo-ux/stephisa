@@ -45,7 +45,7 @@ export default function Header() {
               {CONFIG.CONTACT.PHONE_PRIMARY}
             </a>
             <span className="text-slate-600">|</span>
-            <span className="text-slate-400 font-medium">Devis sous 24h</span>
+            <span className="text-slate-400 font-medium">Disponible 24h/24</span>
           </div>
         </div>
       </div>
@@ -176,7 +176,7 @@ export default function Header() {
                   isActive('/contact') ? 'text-[#2D7D46] font-bold' : 'text-slate-700 hover:text-[#2D7D46]'
                 }`}
               >
-                <span>Contact & Devis</span>
+                <span>Contact</span>
                 {isActive('/contact') && (
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-[#2D7D46] rounded-full" />
                 )}
@@ -254,7 +254,7 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-slate-50"
             >
-              Contact & Devis
+              Contact
             </Link>
             <div className="pt-2">
               <Link

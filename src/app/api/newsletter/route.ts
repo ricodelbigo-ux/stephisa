@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import client, { initDB } from '@/lib/db';
 
 export async function GET() {
   try {
-    const subscribers = db.prepare(`
+    await initDB();
+    const result = await client.execute(`
       SELECT id, email, created_at
       FROM newsletter 
       ORDER BY created_at DESC
-    `).all();
+    `);
 
-    return NextResponse.json({ status: 'success', data: subscribers });
+    return NextResponse.json({ status: 'success', data: result.rows });
   } catch (error: any) {
     return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
   }
@@ -17,6 +18,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    await initDB();
     const body = await request.json();
     const { email } = body;
 
@@ -24,14 +26,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ status: 'error', message: 'Email requis' }, { status: 400 });
     }
 
-    const stmt = db.prepare(`
-      INSERT INTO newsletter (email) VALUES (?)
-    `);
+    await client.execute({
+      sql: 'INSERT INTO newsletter (email) VALUES (?)',
+      args: [email]
+    });
 
-    stmt.run(email);
     return NextResponse.json({ status: 'success' });
   } catch (error: any) {
-    if (error.message.includes('UNIQUE constraint failed')) {
+    if (error.message && error.message.includes('UNIQUE constraint failed')) {
       return NextResponse.json({ status: 'success', message: 'Déjà inscrit' });
     }
     return NextResponse.json({ status: 'error', message: error.message }, { status: 500 });
