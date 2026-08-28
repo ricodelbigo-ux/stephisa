@@ -1,16 +1,9 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "public"
 
 [build.environment]
   NODE_VERSION = "22"
 
-# Official Next.js Plugin for Netlify (Ensures zero 404s on page refresh, API routes & dynamic SSR)
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-# Universal Redirect Rule preventing 404 errors on direct URL page reloads
-[[redirects]]
-  from = "/*"
-  to = "/:splat"
-  status = 200
