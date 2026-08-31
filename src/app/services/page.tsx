@@ -235,10 +235,6 @@ export default function ServicesPage() {
                   
                   {/* Left Column: Titles & Presentation */}
                   <div className={`lg:col-span-6 space-y-6 ${isEven ? 'order-1' : 'order-1 lg:order-2'}`}>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2D7D46]/10 text-[#2D7D46] text-xs font-bold uppercase tracking-wider">
-                      {pole.tagline}
-                    </div>
-
                     <div>
                       <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                         {pole.title}

@@ -26,11 +26,6 @@ export default function Hero() {
           
           {/* Left Content Column */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2D7D46]/20 border border-[#2D7D46]/40 text-[#F89B1C] text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
-              Groupe Multisectoriel au Togo & en Afrique
-            </div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none">
               L&apos;Excellence au Service du <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2D7D46] via-[#F89B1C] to-[#0A5FA5]">
