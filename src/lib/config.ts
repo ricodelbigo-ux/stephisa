@@ -72,16 +72,16 @@ export const CONFIG = {
       id: 'investissement',
       slug: 'investissement',
       title: 'Investissement & Partenariats',
-      shortDesc: 'Placement et financement de projets d\'avenir, opportunités agricoles et immobilières hautement rentables.',
-      fullDesc: 'STEPHISA SARL offre aux investisseurs locaux et de la diaspora des opportunités uniques de placements structurés dans des secteurs porteurs tels que l\'agropastoralisme, la transformation agroalimentaire et le développement immobilier au Togo.',
+      shortDesc: 'Des opportunités d’investissement à fort potentiel au Togo dans l’agropastoralisme, l’agro-industrie et l’immobilier.',
+      fullDesc: 'STEPHISA SARL accompagne les investisseurs institutionnels, privés et les membres de la diaspora dans l’identification, la structuration et le développement d’opportunités d’investissement au Togo. Notre approche repose sur des projets adossés à des actifs réels et tangibles.',
       image: '/assets/img/investissement.png',
       badge: 'Forte Rentabilité',
       icon: 'TrendingUp',
       features: [
-        'Projets Agropastoraux à Forte Rentabilité',
-        'Placements Immobiliers & Foncier Sécurisé',
-        'Co-investissement & Partenariats Stratégiques',
-        'Accompagnement des Investisseurs de la Diaspora'
+        'Projets Agropastoraux & Agro-industriels',
+        'Immobilier & Valorisation Foncière',
+        'Partenariats Stratégiques & Joint-Ventures',
+        'Accompagnement Sur-Mesure de la Diaspora'
       ],
       ctaText: 'Devenir Investisseur / Partenaire'
     },

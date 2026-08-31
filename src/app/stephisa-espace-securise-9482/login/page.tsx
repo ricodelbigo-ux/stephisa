@@ -24,15 +24,15 @@ export default function SecretAdminLoginPage() {
         body: JSON.stringify({ username, password }),
       });
 
-      const json = await res.json();
-      if (res.ok && json.status === 'success') {
+      const json = await res.json().catch(() => null);
+      if (res.ok && json?.status === 'success') {
         router.push('/stephisa-espace-securise-9482');
         router.refresh();
       } else {
-        setError(json.message || 'Identifiants incorrects');
+        setError(json?.message || `Erreur (${res.status}): Identifiants incorrects`);
       }
-    } catch {
-      setError('Erreur de connexion au serveur');
+    } catch (err: any) {
+      setError(err?.message || 'Erreur de connexion au serveur');
     } finally {
       setLoading(false);
     }

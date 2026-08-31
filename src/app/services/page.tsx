@@ -28,6 +28,7 @@ import {
 
 interface FeatureItem {
   label: string;
+  sublabel?: string;
   desc: string;
   icon: any;
 }
@@ -109,18 +110,46 @@ const POLES_DATA: ServiceSectionData[] = [
     id: 'investissement',
     number: '04',
     title: 'Investissement & Partenariats',
-    subtitle: 'Placements Structurés à Forte Rentabilité en Afrique',
+    subtitle: 'Des opportunités d’investissement à fort potentiel au Togo',
     tagline: 'DÉVELOPPEMENT & CRÉATION DE VALEUR',
     accentColor: '#2D7D46',
     badgeBg: 'bg-[#2D7D46]/10 text-[#2D7D46]',
-    description: 'STEPHISA SARL offre aux investisseurs institutionnels, privés et de la diaspora des véhicules de placement sécurisés dans des secteurs stratégiques de l\'économie togolaise : agropastoralisme, transformation et immobilier.',
-    impactText: 'Des opportunités d\'investissement adossées à des actifs réels (terres fertiles, titres fonciers, infrastructures), générant des retours sur investissement mesurables et pérennes.',
+    description: `STEPHISA SARL accompagne les investisseurs institutionnels, privés et les membres de la diaspora dans l’identification, la structuration et le développement d’opportunités d’investissement au Togo.
+
+Notre approche repose sur des projets adossés à des actifs réels et tangibles, dans des secteurs stratégiques et porteurs de croissance : Agropastoralisme • Transformation agro-industrielle • Immobilier.
+
+Nous privilégions des projets structurés, fondés sur une analyse rigoureuse des opportunités, une sélection attentive des actifs et une vision de création de valeur durable et pérenne.`,
+    impactText: `NOTRE ENGAGEMENT — Identifier. Structurer. Investir. Valoriser.
+
+Chez STEPHISA SARL, nous sommes convaincus que l’investissement doit s’appuyer sur des projets concrets, des actifs identifiables et une stratégie claire de création de valeur. Nous mettons notre connaissance du terrain, notre réseau de partenaires et notre capacité de structuration au service d’investisseurs souhaitant participer au développement économique du Togo.
+
+STEPHISA SARL : Votre partenaire pour investir et créer de la valeur au Togo.`,
     image: '/assets/img/investissement.png',
     features: [
-      { label: 'Projets Agropastoraux Rentables', desc: 'Co-investissement dans la production agricole industrielle à haut rendement.', icon: TrendingUp },
-      { label: 'Placements Immobiliers', desc: 'Acquisition de portefeuilles fonciers à forte plus-value géographique.', icon: Landmark },
-      { label: 'Partenariats Stratégiques', desc: 'Joint-ventures pour le développement de projets d\'envergure au Togo.', icon: Handshake },
-      { label: 'Accompagnement Diaspora', desc: 'Sécurisation intégrale des fonds d\'investissement envoyés depuis l\'étranger.', icon: Globe2 },
+      {
+        label: 'PROJETS AGROPASTORAUX',
+        sublabel: 'Investir dans le potentiel agricole du Togo',
+        desc: 'STEPHISA SARL propose des opportunités de co-investissement dans des projets agropastoraux et de production agricole à vocation commerciale et industrielle. L’objectif est de valoriser les ressources foncières et agricoles à travers des modèles de production structurés, capables de générer de la valeur sur le long terme.',
+        icon: TrendingUp
+      },
+      {
+        label: 'IMMOBILIER & FONCIER',
+        sublabel: 'Transformer le foncier en opportunités de création de valeur',
+        desc: 'Nous identifions et structurons des opérations immobilières et foncières situées dans des zones présentant un potentiel de développement et de valorisation. Les investissements peuvent notamment porter sur l’acquisition, la sécurisation et la valorisation d’actifs fonciers et immobiliers.',
+        icon: Landmark
+      },
+      {
+        label: 'PARTENARIATS STRATÉGIQUES',
+        sublabel: 'Construire ensemble des projets d’envergure',
+        desc: 'STEPHISA SARL développe des partenariats avec des investisseurs, entreprises et acteurs institutionnels souhaitant participer au développement de projets structurants au Togo. Selon la nature des opérations, ces collaborations peuvent prendre la forme de joint-ventures, de co-investissements ou de partenariats stratégiques.',
+        icon: Handshake
+      },
+      {
+        label: 'ACCOMPAGNEMENT DE LA DIASPORA',
+        sublabel: 'Investir au Togo avec un accompagnement de proximité',
+        desc: 'La diaspora constitue un partenaire essentiel du développement économique du Togo. STEPHISA SARL accompagne les investisseurs de la diaspora dans leur démarche, depuis l’identification des opportunités jusqu’au suivi de leurs projets d’investissement. Notre ambition : faciliter l’investissement à distance, renforcer la transparence des opérations et favoriser une relation de confiance durable avec chaque investisseur.',
+        icon: Globe2
+      },
     ],
     ctaText: 'Devenir Investisseur / Partenaire',
   },
@@ -217,12 +246,12 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Main Description */}
-                    <p className="text-slate-600 text-sm leading-relaxed">
+                    <div className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
                       {pole.description}
-                    </p>
+                    </div>
 
                     {/* Psychological Impact Statement */}
-                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100/80 text-xs text-slate-700 leading-relaxed font-medium">
+                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100/80 text-xs text-slate-700 leading-relaxed font-medium whitespace-pre-line">
                       {pole.impactText}
                     </div>
 
@@ -236,6 +265,11 @@ export default function ServicesPage() {
                               <IconComponent className="w-4 h-4 text-[#2D7D46] shrink-0" />
                               <span>{feat.label}</span>
                             </div>
+                            {feat.sublabel && (
+                              <p className="text-[11px] font-semibold text-[#2D7D46] pl-6 italic">
+                                {feat.sublabel}
+                              </p>
+                            )}
                             <p className="text-[11px] text-slate-500 leading-normal pl-6">
                               {feat.desc}
                             </p>
