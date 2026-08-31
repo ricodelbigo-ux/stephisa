@@ -217,7 +217,7 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      {/* Open Editorial Sections for Each Pole (No Boxed Cards Inside Cards!) */}
+      {/* Open Editorial Sections for Each Pole (Spacious & Executive Layout) */}
       <div className="divide-y divide-slate-100">
         {POLES_DATA.map((pole, idx) => {
           const isEven = idx % 2 === 0;
@@ -226,74 +226,59 @@ export default function ServicesPage() {
             <section
               key={pole.id}
               id={pole.id}
-              className={`py-20 scroll-mt-32 ${isEven ? 'bg-white' : 'bg-slate-50/70'}`}
+              className={`py-16 md:py-24 scroll-mt-32 ${isEven ? 'bg-white' : 'bg-slate-50/70'}`}
             >
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
                 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                {/* Top Row: Intro Content + High-Res Image */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
                   
-                  {/* Left Column: Editorial Information */}
+                  {/* Left Column: Titles & Presentation */}
                   <div className={`lg:col-span-6 space-y-6 ${isEven ? 'order-1' : 'order-1 lg:order-2'}`}>
-                    
-                    {/* Titles */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2D7D46]/10 text-[#2D7D46] text-xs font-bold uppercase tracking-wider">
+                      {pole.tagline}
+                    </div>
+
                     <div>
-                      <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                      <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                         {pole.title}
                       </h2>
-                      <p className="text-sm font-semibold text-[#2D7D46] mt-1">
+                      <p className="text-base font-semibold text-[#2D7D46] mt-2">
                         {pole.subtitle}
                       </p>
                     </div>
 
                     {/* Main Description */}
-                    <div className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
+                    <div className="text-slate-700 text-sm sm:text-base leading-relaxed whitespace-pre-line space-y-2">
                       {pole.description}
                     </div>
 
-                    {/* Psychological Impact Statement */}
-                    <div className="p-4 rounded-xl bg-slate-50 border border-slate-100/80 text-xs text-slate-700 leading-relaxed font-medium whitespace-pre-line">
-                      {pole.impactText}
+                    {/* Engagement / Psychological Impact Statement Box */}
+                    <div className="p-5 rounded-2xl bg-slate-900 text-white text-xs sm:text-sm leading-relaxed border border-slate-800 shadow-md">
+                      <div className="text-[#F89B1C] font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#F89B1C] animate-pulse" />
+                        Engagement STEPHISA
+                      </div>
+                      <div className="whitespace-pre-line text-slate-200">
+                        {pole.impactText}
+                      </div>
                     </div>
 
-                    {/* 4 Feature Points with Clean Icons */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                      {pole.features.map((feat, fIdx) => {
-                        const IconComponent = feat.icon;
-                        return (
-                          <div key={fIdx} className="space-y-1">
-                            <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-                              <IconComponent className="w-4 h-4 text-[#2D7D46] shrink-0" />
-                              <span>{feat.label}</span>
-                            </div>
-                            {feat.sublabel && (
-                              <p className="text-[11px] font-semibold text-[#2D7D46] pl-6 italic">
-                                {feat.sublabel}
-                              </p>
-                            )}
-                            <p className="text-[11px] text-slate-500 leading-normal pl-6">
-                              {feat.desc}
-                            </p>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    {/* Action Link */}
-                    <div className="pt-4">
+                    {/* CTA Button */}
+                    <div className="pt-2">
                       <Link
                         href={`/contact?service=${pole.id}`}
-                        className="inline-flex items-center gap-2 bg-slate-900 hover:bg-[#2D7D46] text-white text-xs font-bold px-6 py-3.5 rounded-xl transition duration-300 shadow-sm group"
+                        className="inline-flex items-center gap-2 bg-[#2D7D46] hover:bg-[#1E562F] text-white text-xs sm:text-sm font-bold px-7 py-3.5 rounded-xl transition duration-300 shadow-md group"
                       >
                         <span>{pole.ctaText}</span>
                         <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </Link>
                     </div>
-
                   </div>
 
-                  {/* Right Column: Clean High-Res Image (No nested boxed cards!) */}
+                  {/* Right Column: Image */}
                   <div className={`lg:col-span-6 ${isEven ? 'order-2' : 'order-2 lg:order-1'}`}>
-                    <div className="relative h-[380px] sm:h-[450px] w-full rounded-2xl overflow-hidden shadow-lg border border-slate-200/80 group">
+                    <div className="relative h-[380px] sm:h-[480px] w-full rounded-3xl overflow-hidden shadow-xl border border-slate-200/80 group">
                       <Image
                         src={pole.image}
                         alt={pole.title}
@@ -301,9 +286,51 @@ export default function ServicesPage() {
                         sizes="(max-width: 1024px) 100vw, 50vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
                     </div>
                   </div>
 
+                </div>
+
+                {/* Bottom Row: Full-width 2x2 Feature Cards Grid */}
+                <div className="pt-8 border-t border-slate-200/60">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="h-4 w-1 bg-[#2D7D46] rounded-full" />
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                      Axes d&apos;intervention & Opportunités
+                    </h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {pole.features.map((feat, fIdx) => {
+                      const IconComponent = feat.icon;
+                      return (
+                        <div 
+                          key={fIdx} 
+                          className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-lg hover:border-[#2D7D46]/40 transition duration-300 space-y-3"
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="p-3.5 rounded-xl bg-[#2D7D46]/10 text-[#2D7D46] shrink-0 mt-1">
+                              <IconComponent className="w-5 h-5" />
+                            </div>
+                            <div className="space-y-1">
+                              <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">
+                                {feat.label}
+                              </h4>
+                              {feat.sublabel && (
+                                <p className="text-xs font-semibold text-[#2D7D46] italic">
+                                  {feat.sublabel}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-1 pt-1">
+                            {feat.desc}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
               </div>
