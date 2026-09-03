@@ -1,6 +1,8 @@
 export const CONFIG = {
   COMPANY_NAME: 'STEPHISA SARL',
   TAGLINE: 'Excellence Agricole & Multiservices au Togo',
+  // Active l'écran de mise en attente de paiement (true = bloqué / attente paiement, false = site actif)
+  IS_PAYMENT_PENDING: process.env.NEXT_PUBLIC_PAYMENT_PENDING !== 'false',
   API_BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost/STEPHISA/backend',
   CONTACT: {
     ADDRESS: 'ADIDOGOMÉ WONYOME, Lomé, Togo',

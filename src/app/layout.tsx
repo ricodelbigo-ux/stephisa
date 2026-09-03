@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollRevealInit from "@/components/ScrollRevealInit";
+import PaymentPending from "@/components/PaymentPending";
+import { CONFIG } from "@/lib/config";
 
 const playfair = Playfair_Display({
   variable: "--font-serif",
@@ -31,11 +33,22 @@ export const metadata: Metadata = {
   },
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (CONFIG.IS_PAYMENT_PENDING) {
+    return (
+      <html lang="fr" className={`${playfair.variable} ${jakarta.variable}`}>
+        <body className="bg-white text-slate-900 antialiased font-sans">
+          <PaymentPending />
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="fr" className={`${playfair.variable} ${jakarta.variable} scroll-smooth`}>
       <body className="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen font-sans">
