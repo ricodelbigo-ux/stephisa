@@ -50,9 +50,9 @@ export default function PaymentPending() {
 
         {/* Content in front of the 3D Dollar */}
         <div className="relative z-10 pt-16 sm:pt-20 space-y-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900">
+          {/* <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900">
             En attente de paiement
-          </h1>
+          </h1> */}
           
           <p className="text-sm sm:text-base text-slate-500 font-medium">
             Ce site web est temporairement indisponible.
