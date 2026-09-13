@@ -24,7 +24,7 @@ export const CONFIG = {
       slug: 'agriculture',
       title: 'Agriculture & Élevage',
       shortDesc: 'Production végétale, élevage moderne et distribution d\'intrants agricoles de première qualité.',
-      fullDesc: 'Nous exploitons de vastes terres fertiles pour produire des denrées de première nécessité (Maïs, Soja, Ignames, Anacarde, Sésame, Café et Cacao) et assurons l\'élevage de bétail dans le respect des normes sanitaires.',
+      fullDesc: 'Nous exploitons des vastes terres fertiles pour produire des denrées de première nécessité (Maïs, Soja, Ignames, Anacarde, Sésame, Café et Cacao) et assurons l\'élevage de bétail dans le respect des normes sanitaires.',
       image: '/assets/img/agriculture.png',
       badge: 'Cœur de Métier',
       icon: 'Sprout',
